@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Exam System</title>
+    <link rel="stylesheet" href="./JEE Exam System_files/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h1>JEE Exam System</h1>
+                    </div>
+                    <nav class="nav">
+                        <ul class="nav-list">
+                            <li><a href="http://localhost:3000/#" class="nav-link" data-page="home" style="display: block;">Home</a></li>
+                            <li><a href="http://localhost:3000/#" class="nav-link" data-page="login" style="display: none;">Login</a></li>
+                            <li class="student-nav">
+                    <a href="http://localhost:3000/#" class="nav-link" data-page="studentDashboard" style="display: block;">Dashboard</a>
+                </li><li class="admin-nav">
+                    <a href="http://localhost:3000/#" class="nav-link" data-page="adminDashboard" style="display: block;">Dashboard</a>
+                </li><li class="admin-nav">
+                    <a href="http://localhost:3000/#" class="nav-link active" data-page="createExam" style="display: block;">Create Exam</a>
+                </li><li><a href="http://localhost:3000/#" class="nav-link" data-page="register" style="display: none;">Register</a></li>
+                        </ul>
+                    </nav>
+                    <div class="user-menu" id="userMenu" style="display: flex;">
+                        <div class="user-info">
+                            <span id="userName">akshatha b</span>
+                            <button class="logout-btn" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="container">
+                <!-- Home Page -->
+                <section id="homePage" class="page">
+                    <div class="hero">
+                        <div class="hero-content">
+                            <h2>Welcome to JEE Exam System</h2>
+                            <p>Online examination platform for students and administrators</p>
+                            <div class="hero-buttons">
+                                <button class="btn btn-primary" onclick="navigateToPage(&#39;login&#39;)">
+                                    <i class="fas fa-sign-in-alt"></i> Login
+                                </button>
+                                <button class="btn btn-secondary" onclick="navigateToPage(&#39;register&#39;)">
+                                    <i class="fas fa-user-plus"></i> Register
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="features">
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <i class="fas fa-user-graduate"></i>
+                                <h3>Student Portal</h3>
+                                <p>Register for exams, take tests, and view your results</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                                <h3>Admin Dashboard</h3>
+                                <p>Create exams, manage students, and analyze results</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-clock"></i>
+                                <h3>Real-time Timer</h3>
+                                <p>Automatic time tracking and submission</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Instant Results</h3>
+                                <p>Automatic evaluation and immediate feedback</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Login Page -->
+                <section id="loginPage" class="page">
+                    <div class="auth-container">
+                        <div class="auth-card">
+                            <h2>Login</h2>
+                            <form id="loginForm">
+                                <div class="form-group">
+                                    <label for="loginEmail">Email</label>
+                                    <input type="email" id="loginEmail" name="email" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="loginPassword">Password</label>
+                                    <input type="password" id="loginPassword" name="password" required="">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-full">
+                                    <i class="fas fa-sign-in-alt"></i> Login
+                                </button>
+                            </form>
+                            <p class="auth-link">
+                                Don't have an account? <a href="http://localhost:3000/#" onclick="navigateToPage(&#39;register&#39;)">Register here</a>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Register Page -->
+                <section id="registerPage" class="page">
+                    <div class="auth-container">
+                        <div class="auth-card">
+                            <h2>Register</h2>
+                            <form id="registerForm">
+                                <div class="form-group">
+                                    <label for="registerRole">Role</label>
+                                    <select id="registerRole" name="role" required="">
+                                        <option value="student">Student</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="registerUsername">Username</label>
+                                    <input type="text" id="registerUsername" name="username" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="registerEmail">Email</label>
+                                    <input type="email" id="registerEmail" name="email" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="registerPassword">Password</label>
+                                    <input type="password" id="registerPassword" name="password" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="registerFirstName">First Name</label>
+                                    <input type="text" id="registerFirstName" name="firstName" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="registerLastName">Last Name</label>
+                                    <input type="text" id="registerLastName" name="lastName" required="">
+                                </div>
+                                
+                                <!-- Student specific fields -->
+                                <div id="studentFields" class="student-fields" style="display: block;">
+                                    <div class="form-group">
+                                        <label for="registerRollNumber">Roll Number</label>
+                                        <input type="text" id="registerRollNumber" name="rollNumber">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="registerClass">Class</label>
+                                        <input type="text" id="registerClass" name="class">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="registerSection">Section</label>
+                                        <input type="text" id="registerSection" name="section">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-full">
+                                    <i class="fas fa-user-plus"></i> Register
+                                </button>
+                            </form>
+                            <p class="auth-link">
+                                Already have an account? <a href="http://localhost:3000/#" onclick="navigateToPage(&#39;login&#39;)">Login here</a>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Student Dashboard -->
+                <section id="studentDashboardPage" class="page">
+                    <div class="dashboard">
+                        <div class="dashboard-header">
+                            <h2>Student Dashboard</h2>
+                            <div class="dashboard-stats">
+                                <div class="stat-card">
+                                    <h3>Exams Taken</h3>
+                                    <p class="stat-value" id="totalExamsTaken">0</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h3>Pass Rate</h3>
+                                    <p class="stat-value" id="passRate">0.0%</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h3>Average Score</h3>
+                                    <p class="stat-value" id="averageScore">0%</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-content">
+                            <div class="dashboard-section">
+                                <h3>Upcoming Exams</h3>
+                                <div id="upcomingExams" class="exam-list"><p>No upcoming exams scheduled.</p></div>
+                            </div>
+
+                            <div class="dashboard-section">
+                                <h3>Recent Results</h3>
+                                <div id="recentResults" class="result-list"><p>No exam results available.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Admin Dashboard -->
+                <section id="adminDashboardPage" class="page">
+                    <div class="dashboard">
+                        <div class="dashboard-header">
+                            <h2>Admin Dashboard</h2>
+                            <div class="dashboard-actions">
+                                <button class="btn btn-primary" onclick="navigateToPage(&#39;createExam&#39;)">
+                                    <i class="fas fa-plus"></i> Create Exam
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-stats">
+                            <div class="stat-card">
+                                <h3>Total Students</h3>
+                                <p class="stat-value" id="totalStudents">1</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Total Exams</h3>
+                                <p class="stat-value" id="totalExams">0</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Active Exams</h3>
+                                <p class="stat-value" id="activeExams">0</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Completed Exams</h3>
+                                <p class="stat-value" id="completedExams">0</p>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-content">
+                            <div class="dashboard-section">
+                                <h3>Recent Exams</h3>
+                                <div id="recentExams" class="exam-list"><p>No recent exams found.</p></div>
+                            </div>
+
+                            <div class="dashboard-section">
+                                <h3>Recent Results</h3>
+                                <div id="recentResultsAdmin" class="result-list"><p>No recent results found.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Create Exam Page -->
+                <section id="createExamPage" class="page active">
+                    <div class="exam-creator">
+                        <h2>Create New Exam</h2>
+                        <form id="createExamForm">
+                            <div class="form-section">
+                                <h3>Basic Information</h3>
+                                <div class="form-group">
+                                    <label for="examTitle">Exam Title</label>
+                                    <input type="text" id="examTitle" name="title" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="examDescription">Description</label>
+                                    <textarea id="examDescription" name="description" rows="3"></textarea>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="examDate">Exam Date</label>
+                                        <input type="date" id="examDate" name="scheduledDate" required="" min="2026-05-05">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="examStartTime">Start Time</label>
+                                        <input type="time" id="examStartTime" name="startTime" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="examEndTime">End Time</label>
+                                        <input type="time" id="examEndTime" name="endTime" required="">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="examDuration">Duration (minutes)</label>
+                                        <input type="number" id="examDuration" name="duration" min="1" max="480" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="examMaxSeats">Max Seats</label>
+                                        <input type="number" id="examMaxSeats" name="maxSeats" min="1" max="500" value="100" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="examPassingMarks">Passing Marks</label>
+                                        <input type="number" id="examPassingMarks" name="passingMarks" min="0" required="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>Questions</h3>
+                                <div id="questionsContainer">
+        <div class="question-item" data-question-index="0">
+            <div class="question-header">
+                <span class="question-number">Question 1</span>
+                <button type="button" class="remove-question" onclick="removeQuestion(0)">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Type</label>
+                <select name="questionType_1" onchange="updateQuestionType(0, this.value)">
+                    <option value="mcq">Multiple Choice</option>
+                    <option value="true_false">True/False</option>
+                    <option value="short_answer">Short Answer</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Text</label>
+                <textarea name="questionText_1" rows="3" required=""></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" name="subject_1" required="">
+                </div>
+                <div class="form-group">
+                    <label>Marks</label>
+                    <input type="number" name="marks_1" min="1" required="">
+                </div>
+                <div class="form-group">
+                    <label>Difficulty</label>
+                    <select name="difficulty_1">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected="">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="options-container" id="options_1">
+            <h5>Options</h5>
+            <div class="options-list">
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_1" value="option1">
+                        <input type="text" name="option1_1" placeholder="Option 1" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_1" value="option2">
+                        <input type="text" name="option2_1" placeholder="Option 2" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_1" value="option3">
+                        <input type="text" name="option3_1" placeholder="Option 3" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_1" value="option4">
+                        <input type="text" name="option4_1" placeholder="Option 4" required="">
+                    </div>
+                
+            </div>
+        </div>
+            
+            <div class="form-group">
+                <label>Explanation (Optional)</label>
+                <textarea name="explanation_1" rows="2"></textarea>
+            </div>
+        </div>
+    
+        <div class="question-item" data-question-index="1">
+            <div class="question-header">
+                <span class="question-number">Question 2</span>
+                <button type="button" class="remove-question" onclick="removeQuestion(1)">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Type</label>
+                <select name="questionType_2" onchange="updateQuestionType(1, this.value)">
+                    <option value="mcq">Multiple Choice</option>
+                    <option value="true_false">True/False</option>
+                    <option value="short_answer">Short Answer</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Text</label>
+                <textarea name="questionText_2" rows="3" required=""></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" name="subject_2" required="">
+                </div>
+                <div class="form-group">
+                    <label>Marks</label>
+                    <input type="number" name="marks_2" min="1" required="">
+                </div>
+                <div class="form-group">
+                    <label>Difficulty</label>
+                    <select name="difficulty_2">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected="">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="options-container" id="options_2">
+            <h5>Options</h5>
+            <div class="options-list">
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_2" value="option1">
+                        <input type="text" name="option1_2" placeholder="Option 1" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_2" value="option2">
+                        <input type="text" name="option2_2" placeholder="Option 2" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_2" value="option3">
+                        <input type="text" name="option3_2" placeholder="Option 3" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_2" value="option4">
+                        <input type="text" name="option4_2" placeholder="Option 4" required="">
+                    </div>
+                
+            </div>
+        </div>
+            
+            <div class="form-group">
+                <label>Explanation (Optional)</label>
+                <textarea name="explanation_2" rows="2"></textarea>
+            </div>
+        </div>
+    
+        <div class="question-item" data-question-index="2">
+            <div class="question-header">
+                <span class="question-number">Question 3</span>
+                <button type="button" class="remove-question" onclick="removeQuestion(2)">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Type</label>
+                <select name="questionType_3" onchange="updateQuestionType(2, this.value)">
+                    <option value="mcq">Multiple Choice</option>
+                    <option value="true_false">True/False</option>
+                    <option value="short_answer">Short Answer</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Text</label>
+                <textarea name="questionText_3" rows="3" required=""></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" name="subject_3" required="">
+                </div>
+                <div class="form-group">
+                    <label>Marks</label>
+                    <input type="number" name="marks_3" min="1" required="">
+                </div>
+                <div class="form-group">
+                    <label>Difficulty</label>
+                    <select name="difficulty_3">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected="">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="options-container" id="options_3">
+            <h5>Options</h5>
+            <div class="options-list">
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_3" value="option1">
+                        <input type="text" name="option1_3" placeholder="Option 1" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_3" value="option2">
+                        <input type="text" name="option2_3" placeholder="Option 2" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_3" value="option3">
+                        <input type="text" name="option3_3" placeholder="Option 3" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_3" value="option4">
+                        <input type="text" name="option4_3" placeholder="Option 4" required="">
+                    </div>
+                
+            </div>
+        </div>
+            
+            <div class="form-group">
+                <label>Explanation (Optional)</label>
+                <textarea name="explanation_3" rows="2"></textarea>
+            </div>
+        </div>
+    
+        <div class="question-item" data-question-index="3">
+            <div class="question-header">
+                <span class="question-number">Question 4</span>
+                <button type="button" class="remove-question" onclick="removeQuestion(3)">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Type</label>
+                <select name="questionType_4" onchange="updateQuestionType(3, this.value)">
+                    <option value="mcq">Multiple Choice</option>
+                    <option value="true_false">True/False</option>
+                    <option value="short_answer">Short Answer</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Text</label>
+                <textarea name="questionText_4" rows="3" required=""></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" name="subject_4" required="">
+                </div>
+                <div class="form-group">
+                    <label>Marks</label>
+                    <input type="number" name="marks_4" min="1" required="">
+                </div>
+                <div class="form-group">
+                    <label>Difficulty</label>
+                    <select name="difficulty_4">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected="">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="options-container" id="options_4">
+            <h5>Options</h5>
+            <div class="options-list">
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_4" value="option1">
+                        <input type="text" name="option1_4" placeholder="Option 1" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_4" value="option2">
+                        <input type="text" name="option2_4" placeholder="Option 2" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_4" value="option3">
+                        <input type="text" name="option3_4" placeholder="Option 3" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_4" value="option4">
+                        <input type="text" name="option4_4" placeholder="Option 4" required="">
+                    </div>
+                
+            </div>
+        </div>
+            
+            <div class="form-group">
+                <label>Explanation (Optional)</label>
+                <textarea name="explanation_4" rows="2"></textarea>
+            </div>
+        </div>
+    
+        <div class="question-item" data-question-index="4">
+            <div class="question-header">
+                <span class="question-number">Question 5</span>
+                <button type="button" class="remove-question" onclick="removeQuestion(4)">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Type</label>
+                <select name="questionType_5" onchange="updateQuestionType(4, this.value)">
+                    <option value="mcq">Multiple Choice</option>
+                    <option value="true_false">True/False</option>
+                    <option value="short_answer">Short Answer</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Text</label>
+                <textarea name="questionText_5" rows="3" required=""></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" name="subject_5" required="">
+                </div>
+                <div class="form-group">
+                    <label>Marks</label>
+                    <input type="number" name="marks_5" min="1" required="">
+                </div>
+                <div class="form-group">
+                    <label>Difficulty</label>
+                    <select name="difficulty_5">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected="">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="options-container" id="options_5">
+            <h5>Options</h5>
+            <div class="options-list">
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_5" value="option1">
+                        <input type="text" name="option1_5" placeholder="Option 1" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_5" value="option2">
+                        <input type="text" name="option2_5" placeholder="Option 2" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_5" value="option3">
+                        <input type="text" name="option3_5" placeholder="Option 3" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_5" value="option4">
+                        <input type="text" name="option4_5" placeholder="Option 4" required="">
+                    </div>
+                
+            </div>
+        </div>
+            
+            <div class="form-group">
+                <label>Explanation (Optional)</label>
+                <textarea name="explanation_5" rows="2"></textarea>
+            </div>
+        </div>
+    
+        <div class="question-item" data-question-index="5">
+            <div class="question-header">
+                <span class="question-number">Question 6</span>
+                <button type="button" class="remove-question" onclick="removeQuestion(5)">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Type</label>
+                <select name="questionType_6" onchange="updateQuestionType(5, this.value)">
+                    <option value="mcq">Multiple Choice</option>
+                    <option value="true_false">True/False</option>
+                    <option value="short_answer">Short Answer</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Text</label>
+                <textarea name="questionText_6" rows="3" required=""></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" name="subject_6" required="">
+                </div>
+                <div class="form-group">
+                    <label>Marks</label>
+                    <input type="number" name="marks_6" min="1" required="">
+                </div>
+                <div class="form-group">
+                    <label>Difficulty</label>
+                    <select name="difficulty_6">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected="">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="options-container" id="options_6">
+            <h5>Options</h5>
+            <div class="options-list">
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_6" value="option1">
+                        <input type="text" name="option1_6" placeholder="Option 1" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_6" value="option2">
+                        <input type="text" name="option2_6" placeholder="Option 2" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_6" value="option3">
+                        <input type="text" name="option3_6" placeholder="Option 3" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_6" value="option4">
+                        <input type="text" name="option4_6" placeholder="Option 4" required="">
+                    </div>
+                
+            </div>
+        </div>
+            
+            <div class="form-group">
+                <label>Explanation (Optional)</label>
+                <textarea name="explanation_6" rows="2"></textarea>
+            </div>
+        </div>
+    
+        <div class="question-item" data-question-index="6">
+            <div class="question-header">
+                <span class="question-number">Question 7</span>
+                <button type="button" class="remove-question" onclick="removeQuestion(6)">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Type</label>
+                <select name="questionType_7" onchange="updateQuestionType(6, this.value)">
+                    <option value="mcq">Multiple Choice</option>
+                    <option value="true_false">True/False</option>
+                    <option value="short_answer">Short Answer</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Text</label>
+                <textarea name="questionText_7" rows="3" required=""></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" name="subject_7" required="">
+                </div>
+                <div class="form-group">
+                    <label>Marks</label>
+                    <input type="number" name="marks_7" min="1" required="">
+                </div>
+                <div class="form-group">
+                    <label>Difficulty</label>
+                    <select name="difficulty_7">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected="">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="options-container" id="options_7">
+            <h5>Options</h5>
+            <div class="options-list">
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_7" value="option1">
+                        <input type="text" name="option1_7" placeholder="Option 1" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_7" value="option2">
+                        <input type="text" name="option2_7" placeholder="Option 2" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_7" value="option3">
+                        <input type="text" name="option3_7" placeholder="Option 3" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_7" value="option4">
+                        <input type="text" name="option4_7" placeholder="Option 4" required="">
+                    </div>
+                
+            </div>
+        </div>
+            
+            <div class="form-group">
+                <label>Explanation (Optional)</label>
+                <textarea name="explanation_7" rows="2"></textarea>
+            </div>
+        </div>
+    
+        <div class="question-item" data-question-index="7">
+            <div class="question-header">
+                <span class="question-number">Question 8</span>
+                <button type="button" class="remove-question" onclick="removeQuestion(7)">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Type</label>
+                <select name="questionType_8" onchange="updateQuestionType(7, this.value)">
+                    <option value="mcq">Multiple Choice</option>
+                    <option value="true_false">True/False</option>
+                    <option value="short_answer">Short Answer</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Text</label>
+                <textarea name="questionText_8" rows="3" required=""></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" name="subject_8" required="">
+                </div>
+                <div class="form-group">
+                    <label>Marks</label>
+                    <input type="number" name="marks_8" min="1" required="">
+                </div>
+                <div class="form-group">
+                    <label>Difficulty</label>
+                    <select name="difficulty_8">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected="">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="options-container" id="options_8">
+            <h5>Options</h5>
+            <div class="options-list">
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_8" value="option1">
+                        <input type="text" name="option1_8" placeholder="Option 1" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_8" value="option2">
+                        <input type="text" name="option2_8" placeholder="Option 2" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_8" value="option3">
+                        <input type="text" name="option3_8" placeholder="Option 3" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_8" value="option4">
+                        <input type="text" name="option4_8" placeholder="Option 4" required="">
+                    </div>
+                
+            </div>
+        </div>
+            
+            <div class="form-group">
+                <label>Explanation (Optional)</label>
+                <textarea name="explanation_8" rows="2"></textarea>
+            </div>
+        </div>
+    
+        <div class="question-item" data-question-index="8">
+            <div class="question-header">
+                <span class="question-number">Question 9</span>
+                <button type="button" class="remove-question" onclick="removeQuestion(8)">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Type</label>
+                <select name="questionType_9" onchange="updateQuestionType(8, this.value)">
+                    <option value="mcq">Multiple Choice</option>
+                    <option value="true_false">True/False</option>
+                    <option value="short_answer">Short Answer</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Text</label>
+                <textarea name="questionText_9" rows="3" required=""></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" name="subject_9" required="">
+                </div>
+                <div class="form-group">
+                    <label>Marks</label>
+                    <input type="number" name="marks_9" min="1" required="">
+                </div>
+                <div class="form-group">
+                    <label>Difficulty</label>
+                    <select name="difficulty_9">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected="">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="options-container" id="options_9">
+            <h5>Options</h5>
+            <div class="options-list">
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_9" value="option1">
+                        <input type="text" name="option1_9" placeholder="Option 1" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_9" value="option2">
+                        <input type="text" name="option2_9" placeholder="Option 2" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_9" value="option3">
+                        <input type="text" name="option3_9" placeholder="Option 3" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_9" value="option4">
+                        <input type="text" name="option4_9" placeholder="Option 4" required="">
+                    </div>
+                
+            </div>
+        </div>
+            
+            <div class="form-group">
+                <label>Explanation (Optional)</label>
+                <textarea name="explanation_9" rows="2"></textarea>
+            </div>
+        </div>
+    
+        <div class="question-item" data-question-index="9">
+            <div class="question-header">
+                <span class="question-number">Question 10</span>
+                <button type="button" class="remove-question" onclick="removeQuestion(9)">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Type</label>
+                <select name="questionType_10" onchange="updateQuestionType(9, this.value)">
+                    <option value="mcq">Multiple Choice</option>
+                    <option value="true_false">True/False</option>
+                    <option value="short_answer">Short Answer</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Question Text</label>
+                <textarea name="questionText_10" rows="3" required=""></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" name="subject_10" required="">
+                </div>
+                <div class="form-group">
+                    <label>Marks</label>
+                    <input type="number" name="marks_10" min="1" required="">
+                </div>
+                <div class="form-group">
+                    <label>Difficulty</label>
+                    <select name="difficulty_10">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected="">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="options-container" id="options_10">
+            <h5>Options</h5>
+            <div class="options-list">
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_10" value="option1">
+                        <input type="text" name="option1_10" placeholder="Option 1" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_10" value="option2">
+                        <input type="text" name="option2_10" placeholder="Option 2" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_10" value="option3">
+                        <input type="text" name="option3_10" placeholder="Option 3" required="">
+                    </div>
+                
+                    <div class="option-item">
+                        <input type="radio" name="correctAnswer_10" value="option4">
+                        <input type="text" name="option4_10" placeholder="Option 4" required="">
+                    </div>
+                
+            </div>
+        </div>
+            
+            <div class="form-group">
+                <label>Explanation (Optional)</label>
+                <textarea name="explanation_10" rows="2"></textarea>
+            </div>
+        </div>
+    </div>
+                                <button type="button" class="btn btn-secondary" onclick="addQuestion()">
+                                    <i class="fas fa-plus"></i> Add Question
+                                </button>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>Settings</h3>
+                                <div class="form-group">
+                                    <label for="examInstructions">Instructions</label>
+                                    <textarea id="examInstructions" name="instructions" rows="3">Read all questions carefully before answering.</textarea>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>
+                                            <input type="checkbox" id="shuffleQuestions" name="shuffleQuestions">
+                                            Shuffle Questions
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>
+                                            <input type="checkbox" id="negativeMarking" name="negativeMarking">
+                                            Enable Negative Marking
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>
+                                            <input type="checkbox" id="showResults" name="showResults" checked="">
+                                            Show Results Immediately
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" onclick="navigateToPage(&#39;adminDashboard&#39;)">
+                                    Cancel
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Create Exam
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Exam Interface -->
+                <section id="examPage" class="page">
+                    <div class="exam-interface">
+                        <div class="exam-header">
+                            <div class="exam-info">
+                                <h2 id="examTitle"></h2>
+                                <div class="exam-meta">
+                                    <span id="examCode"></span>
+                                    <span class="seat-number">Seat: <span id="seatNumber"></span></span>
+                                </div>
+                            </div>
+                            <div class="exam-timer">
+                                <i class="fas fa-clock"></i>
+                                <span id="timer">00:00:00</span>
+                            </div>
+                        </div>
+
+                        <div class="exam-content">
+                            <div class="exam-sidebar">
+                                <div class="question-navigation">
+                                    <h4>Questions</h4>
+                                    <div id="questionNav"></div>
+                                </div>
+                                <button class="btn btn-success btn-full" onclick="submitExam()">
+                                    <i class="fas fa-paper-plane"></i> Submit Exam
+                                </button>
+                            </div>
+
+                            <div class="exam-main">
+                                <div id="questionContainer">
+                                    <!-- Questions will be displayed here -->
+                                </div>
+                                <div class="question-navigation-buttons">
+                                    <button class="btn btn-secondary" onclick="previousQuestion()">
+                                        <i class="fas fa-arrow-left"></i> Previous
+                                    </button>
+                                    <button class="btn btn-primary" onclick="nextQuestion()">
+                                        Next <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Results Page -->
+                <section id="resultsPage" class="page">
+                    <div class="results-container">
+                        <div class="result-header">
+                            <h2>Exam Results</h2>
+                        </div>
+                        <div id="resultContent">
+                            <!-- Results will be displayed here -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>© 2024 JEE Exam System. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast error">Access denied. student role is not authorized to access this resource.</div>
+
+    <script src="./JEE Exam System_files/working-app.js.download"></script>
+
+
+</body></html>
